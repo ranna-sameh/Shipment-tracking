@@ -2,9 +2,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import TrackingForm from "./Pages/TrackingForm";
 import ShipmentDetails from "./Pages/ShipmentDetails";
+
 import Layout from "./Components/Layout/Layout";
 
-function App() {
+const App = () => {
   return (
     <MuiThemeProvider>
       <Router>
@@ -17,6 +18,6 @@ function App() {
       </Router>
     </MuiThemeProvider>
   );
-}
+};
 
 export default App;
