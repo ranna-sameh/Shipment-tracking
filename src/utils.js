@@ -20,4 +20,5 @@ export const mapSteps = {
   OUT_FOR_DELIVERY: { color: "#FFC107", step: 2 },
   CANCELLED: { color: "red", step: 2 },
   DELIVERED: { color: "#4CAF50", step: 4 },
+  DELIVERED_TO_SENDER: { color: "#4CAF50", step: 4 },
 };
