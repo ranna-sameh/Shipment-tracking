@@ -38,7 +38,6 @@ const Navbar = () => {
     <Grid
       container
       direction={isArabic ? "row-reverse" : "row"}
-      justifyContent="space-between"
     >
       <Grid item xs={8} md={2} sx={{ my: 2, ml: { md: 10 } }}>
         <img
