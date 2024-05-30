@@ -2,10 +2,9 @@ import Button from "@mui/material/Button";
 import logo from "../../assets/bostaLogo.jpeg";
 import arabicLogo from "../../assets/bostaArabicLogo.png";
 import { Grid, Hidden } from "@mui/material";
-import { makeStyles } from "@material-ui/core/styles";
 import { useNavigate, useLocation } from "react-router-dom"; // Import useLocation
 import { useTranslation } from "react-i18next";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const pages = [
   { title: "Home", navigateTo: "/" },
@@ -13,12 +12,6 @@ const pages = [
   { title: "Contact Sales", navigateTo: "" },
   { title: "Track your shipment", navigateTo: "" },
 ];
-
-const useStyles = makeStyles((theme) => ({
-  drawer: {
-    width: 400,
-  },
-}));
 
 const Navbar = () => {
   const [lang, setLang] = useState(localStorage.getItem("language") || "en");
@@ -41,11 +34,11 @@ const Navbar = () => {
   };
 
   return (
-    <Grid container direction={lang == "ar" ? "row-reverse" : "row"}>
+    <Grid container direction={lang === "ar" ? "row-reverse" : "row"}>
       <Grid item xs={2} md={2} sx={{ my: 2, ml: { md: 10 } }}>
         <img
           onClick={() => navigate("/")}
-          src={lang == "ar" ? arabicLogo : logo}
+          src={lang === "ar" ? arabicLogo : logo}
           alt="logo"
           style={{
             width: "120px",
