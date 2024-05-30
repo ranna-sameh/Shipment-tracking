@@ -1,4 +1,4 @@
-import { Box, Divider, Grid, Typography } from "@mui/material";
+import { Box, Divider, Grid } from "@mui/material";
 import { useContext } from "react";
 import { Context } from "../../../../Context";
 import { formattedDate, formattedTime } from "../../../../utils";
@@ -29,7 +29,7 @@ const Brief = () => {
         justifyContent="space-around"
         alignItems="center"
         sx={{ p: { xs: 2, md: 4 } }}
-        direction={lang == "ar" ? "row-reverse" : "row"}
+        direction={lang === "ar" ? "row-reverse" : "row"}
       >
         <GridItem
           title={`${t("Shipment Number")} #${data?.TrackingNumber}`}

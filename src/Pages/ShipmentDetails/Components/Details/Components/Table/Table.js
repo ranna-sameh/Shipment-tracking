@@ -10,10 +10,21 @@ import { Context } from "../../../../../../Context";
 import { formattedDate, formattedTime } from "../../../../../../utils";
 import { useTranslation } from "react-i18next";
 
-const CustomTableCell = ({ text, language }) => {
+const CustomTableHeadCell = ({ text, language }) => {
   return (
     <TableCell
       style={{ fontFamily: "Cairo", fontSize: 18, color: "#999999" }}
+      align={language === "ar" ? "right" : "left"}
+    >
+      {text}
+    </TableCell>
+  );
+};
+
+const CustomTableCell = ({ text, language }) => {
+  return (
+    <TableCell
+      style={{ fontFamily: "Cairo" }}
       align={language === "ar" ? "right" : "left"}
     >
       {text}
@@ -30,10 +41,10 @@ const TransitTable = () => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow style={{ backgroundColor: "#F4F4F4" }}>
-            <CustomTableCell text={t("Branch")} language={language} />
-            <CustomTableCell text={t("Date")} language={language} />
-            <CustomTableCell text={t("Time")} language={language} />
-            <CustomTableCell text={t("Details")} language={language} />
+            <CustomTableHeadCell text={t("Branch")} language={language} />
+            <CustomTableHeadCell text={t("Date")} language={language} />
+            <CustomTableHeadCell text={t("Time")} language={language} />
+            <CustomTableHeadCell text={t("Details")} language={language} />
           </TableRow>
         </TableHead>
         <TableBody>
@@ -50,19 +61,14 @@ const TransitTable = () => {
               >
                 {row.hub || "Hub"}
               </TableCell>
-              <TableCell
-                style={{ fontFamily: "Cairo" }}
-                align={language === "ar" ? "right" : "left"}
-              >
-                {formattedDate(row.timestamp).formattedDate}
-              </TableCell>
-              <TableCell
-                style={{ fontFamily: "Cairo" }}
-                align={language === "ar" ? "right" : "left"}
-              >
-                {" "}
-                {formattedTime(row.timestamp)}
-              </TableCell>
+              <CustomTableCell
+                text={formattedDate(row.timestamp).formattedDate}
+                language={language}
+              />
+              <CustomTableCell
+                text={formattedTime(row.timestamp)}
+                language={language}
+              />{" "}
               <TableCell
                 style={{ fontFamily: "Cairo" }}
                 align={language === "ar" ? "right" : "left"}

@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import logo from "../../assets/bostaLogo.jpeg";
 import arabicLogo from "../../assets/bostaArabicLogo.png";
 import { Grid, Hidden } from "@mui/material";
-import { useNavigate, useLocation } from "react-router-dom"; // Import useLocation
+import { useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 
@@ -15,6 +15,7 @@ const pages = [
 
 const Navbar = () => {
   const [lang, setLang] = useState(localStorage.getItem("language") || "en");
+  const isArabic = lang === "ar";
   const navigate = useNavigate();
   const location = useLocation();
   const { i18n, t } = useTranslation();
@@ -34,11 +35,14 @@ const Navbar = () => {
   };
 
   return (
-    <Grid container direction={lang === "ar" ? "row-reverse" : "row"}>
-      <Grid item xs={2} md={2} sx={{ my: 2, ml: { md: 10 } }}>
+    <Grid
+      container
+      direction={isArabic ? "row-reverse" : "row"}
+    >
+      <Grid item xs={8} md={2} sx={{ my: 2, ml: { md: 10 } }}>
         <img
           onClick={() => navigate("/")}
-          src={lang === "ar" ? arabicLogo : logo}
+          src={isArabic ? arabicLogo : logo}
           alt="logo"
           style={{
             width: "120px",
@@ -74,9 +78,9 @@ const Navbar = () => {
           fontSize: "20px",
           color: "#e30613",
         }}
-        onClick={() => changeLanguage(lang === "ar" ? "en" : "ar")}
+        onClick={() => changeLanguage(isArabic ? "en" : "ar")}
       >
-        {lang === "ar" ? "ENG" : "AR"}
+        {isArabic ? "ENG" : "AR"}
       </Button>
     </Grid>
   );
