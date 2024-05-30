@@ -40,6 +40,7 @@ const ShipmentDetails = () => {
       <Grid
         container
         columnSpacing={3}
+        rowSpacing={3}
         direction={lang === "ar" ? "row-reverse" : "row"}
       >
         <Grid item xs={12} md={8}>

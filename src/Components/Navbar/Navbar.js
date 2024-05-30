@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import logo from "../../assets/bostaLogo.jpeg";
 import arabicLogo from "../../assets/bostaArabicLogo.png";
 import { Grid, Hidden } from "@mui/material";
-import { useNavigate, useLocation } from "react-router-dom"; // Import useLocation
+import { useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 
@@ -34,8 +34,12 @@ const Navbar = () => {
   };
 
   return (
-    <Grid container direction={lang === "ar" ? "row-reverse" : "row"}>
-      <Grid item xs={2} md={2} sx={{ my: 2, ml: { md: 10 } }}>
+    <Grid
+      container
+      direction={lang === "ar" ? "row-reverse" : "row"}
+      justifyContent="space-between"
+    >
+      <Grid item xs={8} md={2} sx={{ my: 2, ml: { md: 10 } }}>
         <img
           onClick={() => navigate("/")}
           src={lang === "ar" ? arabicLogo : logo}

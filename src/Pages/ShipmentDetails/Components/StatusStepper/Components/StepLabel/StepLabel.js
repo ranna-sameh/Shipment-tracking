@@ -14,6 +14,7 @@ const CustomStepLabel = ({ children }) => {
           position: "absolute",
           width: "auto",
           transform: "translateY(200%) translateX(-30%)",
+          display: { xs: "none", md: "flex" },
         },
       }}
       StepIconComponent={StepIcon}
