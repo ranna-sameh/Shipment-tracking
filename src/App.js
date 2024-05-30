@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import TrackingForm from "./Pages/TrackingForm";
+import ShipmentDetails from "./Pages/ShipmentDetails";
+import Layout from "./Components/Layout/Layout";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MuiThemeProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route path="/" element={<TrackingForm />} />
+            <Route path="/:trackingNo" element={<ShipmentDetails />} />
+          </Route>
+        </Routes>
+      </Router>
+    </MuiThemeProvider>
   );
 }
 
