@@ -14,7 +14,7 @@ const CustomStepLabel = ({ children }) => {
         [`& .${stepLabelClasses.labelContainer}`]: {
           position: "absolute",
           width: "auto",
-          transform: "translateY(200%)",
+          transform: "translateY(200%) translateX(-30%)",
         },
       }}
       StepIconComponent={StepIcon}
@@ -23,7 +23,5 @@ const CustomStepLabel = ({ children }) => {
     </StepLabel>
   );
 };
-
-const StepLabelStyled = styled(StepLabel)(({ theme }) => ({}));
 
 export default CustomStepLabel;

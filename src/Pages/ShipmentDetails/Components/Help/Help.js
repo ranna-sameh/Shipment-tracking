@@ -1,6 +1,10 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import help from "../../../../assets/bostaHelper.png";
+import { useTranslation } from "react-i18next";
+
 const Help = () => {
+  const { t } = useTranslation();
+
   return (
     <Grid
       container
@@ -15,9 +19,9 @@ const Help = () => {
         style={{ display: "flex", flexDirection: "column", rowGap: 10 }}
       >
         <Typography
-          style={{ fontFamily: "Cairo", fontSize: 16, fontWeight: "bold" }}
+          style={{ fontFamily: "Cairo", fontSize: 14, fontWeight: "bold" }}
         >
-          Is there a problem with your shipment?!
+          {t("Is there a problem with your shipment?!")}
         </Typography>
         <Button
           style={{
@@ -26,7 +30,7 @@ const Help = () => {
             fontFamily: "Cairo",
           }}
         >
-          Report an issue
+          {t("Report an issue")}
         </Button>
       </Grid>
       <Grid item xs={4}>

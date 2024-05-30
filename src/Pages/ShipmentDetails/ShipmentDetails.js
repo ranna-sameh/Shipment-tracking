@@ -8,10 +8,12 @@ import Brief from "./Components/Brief";
 import DeliveryAddress from "./Components/DeliveryAddress/DeliveryAddress";
 import Details from "./Components/Details";
 import Help from "./Components/Help";
+import { useTranslation } from "react-i18next";
 
 const ShipmentDetails = () => {
   const { trackingNo } = useParams();
   const { data, setData, setState } = useContext(Context);
+  const lang = localStorage.getItem("language");
 
   useEffect(() => {
     !data &&
@@ -36,7 +38,11 @@ const ShipmentDetails = () => {
       sx={{ pl: { xs: 2, md: 10 }, pr: { xs: 2, md: 10 } }}
     >
       <Brief />
-      <Grid container columnSpacing={3}>
+      <Grid
+        container
+        columnSpacing={3}
+        direction={lang == "ar" ? "row-reverse" : "row"}
+      >
         <Grid item xs={12} md={8}>
           <Details />
         </Grid>

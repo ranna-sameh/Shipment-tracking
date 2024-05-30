@@ -1,16 +1,18 @@
 import Button from "@mui/material/Button";
 import logo from "../../assets/bostaLogo.jpeg";
+import arabicLogo from "../../assets/bostaArabicLogo.png";
 import { Grid, Hidden } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router-dom"; // Import useLocation
+import { useTranslation } from "react-i18next";
+import { useState, useEffect } from "react";
 
 const pages = [
   { title: "Home", navigateTo: "/" },
   { title: "Prices", navigateTo: "/" },
   { title: "Contact Sales", navigateTo: "" },
+  { title: "Track your shipment", navigateTo: "" },
 ];
-
-const lang = "ENG";
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
@@ -19,15 +21,31 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Navbar = () => {
-  const classes = useStyles();
+  const [lang, setLang] = useState(localStorage.getItem("language") || "en");
   const navigate = useNavigate();
+  const location = useLocation();
+  const { i18n, t } = useTranslation();
+
+  const changeLanguage = (language) => {
+    setLang(language);
+    i18n.changeLanguage(language);
+    localStorage.setItem("language", language);
+
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set("lang", language);
+
+    navigate(`${location.pathname}?${searchParams.toString()}`, {
+      replace: true,
+    });
+    window.location.reload();
+  };
 
   return (
-    <Grid container>
+    <Grid container direction={lang == "ar" ? "row-reverse" : "row"}>
       <Grid item xs={2} md={2} sx={{ my: 2, ml: { md: 10 } }}>
         <img
           onClick={() => navigate("/")}
-          src={logo}
+          src={lang == "ar" ? arabicLogo : logo}
           alt="logo"
           style={{
             width: "120px",
@@ -36,10 +54,10 @@ const Navbar = () => {
         />
       </Grid>
       <Hidden mdDown>
-        <Grid item md={5}>
+        <Grid item md={7}>
           {pages.map((page) => (
             <Button
-              key={page}
+              key={page.title}
               onClick={() => navigate(page.navigateTo)}
               sx={{ my: 2 }}
               style={{
@@ -50,46 +68,25 @@ const Navbar = () => {
                 marginRight: "69px",
               }}
             >
-              {page.title}
+              {t(page.title)}
             </Button>
           ))}
         </Grid>
       </Hidden>
 
-      <Grid
-        item
-        xs={10}
-        md={3}
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          my: 2,
-          justifyContent: "flex-end",
+      <Button
+        style={{
+          fontFamily: "Cairo",
+          fontWeight: 800,
+          fontSize: "20px",
+          color: "#e30613",
         }}
+        onClick={() => changeLanguage(lang === "ar" ? "en" : "ar")}
       >
-        <Button
-          style={{
-            fontFamily: "Cairo",
-            fontWeight: 500,
-            color: "black",
-          }}
-          sx={{ fontSize: { xs: 14, md: 20 } }}
-          onClick={() => navigate("/")}
-        >
-          Track your Shipment
-        </Button>
-        <Button
-          style={{
-            fontFamily: "Cairo",
-            fontWeight: 800,
-            fontSize: "20px",
-            color: "#e30613",
-          }}
-        >
-          {lang}
-        </Button>
-      </Grid>
+        {lang === "ar" ? "ENG" : "AR"}
+      </Button>
     </Grid>
   );
 };
+
 export default Navbar;

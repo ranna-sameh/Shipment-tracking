@@ -4,8 +4,12 @@ import { Context } from "../../../../Context";
 import { formattedDate, formattedTime } from "../../../../utils";
 import StatusStepper from "../StatusStepper";
 import GridItem from "./Components/GridItem";
+import { useTranslation } from "react-i18next";
 
 const Brief = () => {
+  const { t } = useTranslation();
+  const lang = localStorage.getItem("language");
+
   const {
     state: { color },
     data,
@@ -25,18 +29,19 @@ const Brief = () => {
         justifyContent="space-around"
         alignItems="center"
         sx={{ p: { xs: 2, md: 4 } }}
+        direction={lang == "ar" ? "row-reverse" : "row"}
       >
         <GridItem
-          title={`Shipment Number #${data?.TrackingNumber}`}
-          text={data?.CurrentStatus.state}
+          title={`${t("Shipment Number")} #${data?.TrackingNumber}`}
+          text={t(data?.CurrentStatus.state)}
           color={color}
         />{" "}
         <GridItem
-          title="Latest update"
+          title={t("Latest Update")}
           text={
             <span style={{ fontSize: 16 }}>
               {data?.CurrentStatus &&
-                formattedDate(data?.CurrentStatus?.timestamp).formattedDay +
+                t(formattedDate(data?.CurrentStatus?.timestamp).formattedDay) +
                   " " +
                   formattedDate(data?.CurrentStatus?.timestamp).formattedDate +
                   " at " +
@@ -44,9 +49,9 @@ const Brief = () => {
             </span>
           }
         />
-        <GridItem title="Seller name" text="NOON" />
+        <GridItem title={t("Seller Name")} text="NOON" />
         <GridItem
-          title="To be delivered at"
+          title={t("To be delivered at")}
           text={
             data?.PromisedDate &&
             formattedDate(data?.PromisedDate).formattedDate
