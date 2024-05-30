@@ -74,6 +74,7 @@ const Navbar = () => {
             color: "black",
           }}
           sx={{ fontSize: { xs: 14, md: 20 } }}
+          onClick={() => navigate("/")}
         >
           Track your Shipment
         </Button>
