@@ -4,13 +4,13 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 import { Provider } from "./Context";
-import { jss, rtlTheme, ltrTheme } from "./theme"; // Importing JSS, RTL Theme, and LTR Theme
-import { StylesProvider, ThemeProvider, jssPreset } from "@mui/styles"; // Importing StylesProvider, ThemeProvider, and jssPreset
-import { create } from "jss"; // Importing create function from JSS
-import rtl from "jss-rtl"; // Importing rtl from jss-rtl
-import { I18nextProvider } from 'react-i18next';
-import i18n from './i18n';
-// Enable RTL support in JSS
+import { rtlTheme } from "./theme";
+import { StylesProvider, ThemeProvider, jssPreset } from "@mui/styles";
+import { create } from "jss";
+import rtl from "jss-rtl";
+import { I18nextProvider } from "react-i18next";
+import i18n from "./i18n";
+
 const jssWithRtl = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 ReactDOM.render(

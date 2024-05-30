@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import help from "../../../../assets/bostaHelper.png";
 import { useTranslation } from "react-i18next";
 
@@ -34,7 +34,7 @@ const Help = () => {
         </Button>
       </Grid>
       <Grid item xs={4}>
-        <img src={help} style={{ width: "100%" }} />
+        <img src={help} alt="help" style={{ width: "100%" }} />
       </Grid>
     </Grid>
   );

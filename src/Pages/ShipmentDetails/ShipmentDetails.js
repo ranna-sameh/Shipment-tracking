@@ -8,7 +8,6 @@ import Brief from "./Components/Brief";
 import DeliveryAddress from "./Components/DeliveryAddress/DeliveryAddress";
 import Details from "./Components/Details";
 import Help from "./Components/Help";
-import { useTranslation } from "react-i18next";
 
 const ShipmentDetails = () => {
   const { trackingNo } = useParams();
@@ -25,7 +24,7 @@ const ShipmentDetails = () => {
           setState(mapSteps[data.CurrentStatus.state]);
         })
         .catch();
-  }, [trackingNo, data]);
+  }, [trackingNo, data, setData, setState]);
 
   return data ? (
     <Box
@@ -41,7 +40,7 @@ const ShipmentDetails = () => {
       <Grid
         container
         columnSpacing={3}
-        direction={lang == "ar" ? "row-reverse" : "row"}
+        direction={lang === "ar" ? "row-reverse" : "row"}
       >
         <Grid item xs={12} md={8}>
           <Details />

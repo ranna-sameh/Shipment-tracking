@@ -1,4 +1,3 @@
-import StepIcon from "./Components/StepIcon";
 import React, { useContext } from "react";
 import { Stepper, Step, Typography } from "@mui/material";
 import CustomStepLabel from "./Components/StepLabel/StepLabel";
