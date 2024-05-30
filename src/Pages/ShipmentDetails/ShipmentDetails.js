@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import { Box, CircularProgress, Grid } from "@mui/material";
 import axios from "axios";
 import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -24,8 +24,8 @@ const ShipmentDetails = () => {
         })
         .catch();
   }, [trackingNo, data]);
-  
-  return (
+
+  return data ? (
     <Box
       style={{
         marginTop: 30,
@@ -51,6 +51,17 @@ const ShipmentDetails = () => {
         </Grid>
       </Grid>
     </Box>
+  ) : (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+      }}
+    >
+      <CircularProgress style={{ color: "black" }} />
+    </div>
   );
 };
 export default ShipmentDetails;
